@@ -52,7 +52,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: #000; /* Solid black, no background image */
+  background: #000;
 }
 
 .hero-content h1 {
@@ -112,5 +112,6 @@ footer {
   font-size: 0.9em;
   color: #888;
 }
+
 
 
