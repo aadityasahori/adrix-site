@@ -74,6 +74,83 @@ body {
   font-size: 1.2em;
   color: #ccc;
 }
+.hero {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px 10%;
+  background: #000;
+  color: #e0e0e0;
+  flex-wrap: wrap;
+}
+
+.hero-display {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  padding: 25px 30px;
+  flex: 1 1 280px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+  transition: transform 0.3s ease;
+}
+.hero-display:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #00ff88;
+}
+.hero-display h2 {
+  color: #00ff88;
+  margin-bottom: 15px;
+  font-size: 1.8em;
+}
+.hero-display p {
+  font-size: 1.1em;
+  margin-bottom: 25px;
+  color: #ccc;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.price-btn, .demo-btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 25px;
+  font-size: 1em;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.price-btn {
+  background: linear-gradient(90deg, #4158d0 0%, #c850c0 90%);
+  color: #fff;
+}
+.price-btn:hover {
+  background: linear-gradient(90deg, #c850c0 0%, #4158d0 90%);
+}
+
+.demo-btn {
+  background: #222;
+  color: #00ff88;
+}
+.demo-btn:hover {
+  background: #00ff88;
+  color: #000;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .hero-display {
+    max-width: 100%; 
+  }
+}
 /* Gradient Button */
 button {
   background: linear-gradient(90deg, #4158d0 0%, #c850c0 90%);
@@ -127,3 +204,4 @@ footer {
   font-size: 0.9em;
   color: #888;
 }
+
