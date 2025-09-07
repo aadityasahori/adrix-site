@@ -1,154 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ADRI-X | Premium AI Source Codes</title>
-  <style>
-    /* General Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #000;
-      color: #e0e0e0;
-      line-height: 1.6;
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 10%;
-      background: rgba(20,20,20,0.95);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .logo {
-      font-size: 1.8em;
-      font-weight: bold;
-      background: linear-gradient(90deg,#183153,#7749f8,#1d1d8f);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-    }
-
-    /* Desktop nav-links hidden on small screens */
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
-    .nav-links li a {
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    .nav-links li a:hover {
-      color: #c850c0;
-    }
-    /* Hamburger Container */
-    .hamburger-container {
-      display: none; /* hidden on desktop */
-      align-items: center;
-      gap: 15px;
-    }
-    /* Hamburger Icon */
-    .hamburger {
-      cursor: pointer;
-      width: 30px;
-      height: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .hamburger div {
-      height: 4px;
-      background: #00c; /* Blue color */
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-    /* Login Button */
-    .login-btn {
-      background: linear-gradient(90deg, #4158d0 0%, #c850c0 90%);
-      color: #fff;
-      border: none;
-      padding: 8px 18px;
-      font-size: 1em;
-      cursor: pointer;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: background 0.3s ease;
-    }
-    .login-btn:hover {
-      background: linear-gradient(90deg, #c850c0 0%, #4158d0 90%);
-    }
-
-    /* Responsive Navigation Menu (hidden by default) */
-    .mobile-menu {
-      position: fixed;
-      top: 70px;
-      right: 0;
-      background: rgba(20,20,20,0.98);
-      width: 220px;
-      height: calc(100% - 70px);
-      padding: 40px 20px;
-      box-shadow: -2px 0 5px rgba(0,0,0,0.5);
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-      z-index: 1500;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .mobile-menu.active {
-      transform: translateX(0);
-    }
-    .mobile-menu a {
-      font-size: 1.2em;
-      font-weight: 600;
-      color: #e0e0e0;
-      border-bottom: 1px solid #444;
-      padding-bottom: 5px;
-    }
-    .mobile-menu a:hover {
-      color: #c850c0;
-      border-color: #c850c0;
-    }
-
-    /* Hide desktop nav-links on smaller screens */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-      .hamburger-container {
-        display: flex;
-      }
-    }
-  </style>
-</head>
-<body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">ADRI-X</div>
-
-    <!-- Desktop nav -->
-    <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Products</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-
-    <!-- Hamburger + Login button for mobile -->
-    <div class="hamburger-container" aria-label="Menu and login button">
-      <button class="login-btn">Login</button>
-      <div class="hamburger" aria-label="Toggle menu" role="button" tabindex
+/* General */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #000; /* Simple solid black background */
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10%;
+  background: rgba(20, 20, 20, 0.95);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.logo {
+  font-size: 1.8em;
+  font-weight: bold;
+  background: linear-gradient(90deg,#183153,#7749f8, #1d1d8f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+.nav-links li a {
+  text-decoration: none;
+  color: #e0e0e0;
+  font-weight: 500;
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links li a:hover {
+  background: linear-gradient(90deg, #4158d0, #c850c0 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+/* Hero Section */
+.hero {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #000; /* Solid black, image removed */
+}
+.hero-content h1 {
+  font-size: 3em;
+  color: #fff;
+}
+.hero-content h1 span {
+  background: linear-gradient(90deg, #4158d0 0%, #c850c0 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+.hero-content p {
+  margin: 20px 0;
+  font-size: 1.2em;
+  color: #ccc;
+}
+/* Gradient Button */
+button {
+  background: linear-gradient(90deg, #4158d0 0%, #c850c0 90%);
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+button:hover {
+  background: linear-gradient(90deg, #c850c0 0%, #4158d0 90%);
+  transform: translateY(-2px);
+}
+/* Features Section */
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 60px 10%;
+  background: #111;
+}
+.card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s, background 0.3s;
+}
+.card:hover {
+  transform: translateY(-5px);
+  background: rgba(36, 50, 183, 0.15);
+}
+.card h2 {
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #4158d0, #c850c0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #000;
+  border-top: 1px solid #222;
+  font-size: 0.9em;
+  color: #888;
+}
