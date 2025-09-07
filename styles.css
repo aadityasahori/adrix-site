@@ -46,14 +46,15 @@ body {
 
 /* Hero Section */
 .hero {
+ .hero {
   height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
-              url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+  background: #000; /* Solid black, no background image */
 }
+
 .hero-content h1 {
   font-size: 3em;
   color: #fff;
@@ -111,4 +112,5 @@ footer {
   font-size: 0.9em;
   color: #888;
 }
+
 
