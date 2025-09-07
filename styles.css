@@ -1,10 +1,15 @@
+/* General */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #000; /* Solid black */
+  background: #000; /* Simple solid black background */
   color: #e0e0e0;
   line-height: 1.6;
 }
-
 /* Navbar */
 .navbar {
   display: flex;
@@ -16,21 +21,22 @@ body {
   top: 0;
   z-index: 1000;
 }
-
 .logo {
   font-size: 1.8em;
   font-weight: bold;
-  /* Gradient text color */
   background: linear-gradient(90deg,#183153,#7749f8, #1d1d8f);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
 }
-
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
 .nav-links li a {
   text-decoration: none;
-  /* Gradient on link hover */
   color: #e0e0e0;
   font-weight: 500;
   transition: color 0.3s;
@@ -43,24 +49,20 @@ body {
   background-clip: text;
   text-fill-color: transparent;
 }
-
 /* Hero Section */
 .hero {
- .hero {
   height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: #000;
+  background: #000; /* Solid black, image removed */
 }
-
 .hero-content h1 {
   font-size: 3em;
   color: #fff;
 }
 .hero-content h1 span {
-  /* Use premium gradient for headline */
   background: linear-gradient(90deg, #4158d0 0%, #c850c0 90%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -72,7 +74,22 @@ body {
   font-size: 1.2em;
   color: #ccc;
 }
-
+/* Gradient Button */
+button {
+  background: linear-gradient(90deg, #4158d0 0%, #c850c0 90%);
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+button:hover {
+  background: linear-gradient(90deg, #c850c0 0%, #4158d0 90%);
+  transform: translateY(-2px);
+}
 /* Features Section */
 .features {
   display: flex;
@@ -83,7 +100,7 @@ body {
 }
 .card {
   flex: 1;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   padding: 30px;
   border-radius: 15px;
   backdrop-filter: blur(10px);
@@ -95,23 +112,18 @@ body {
 }
 .card h2 {
   margin-bottom: 10px;
-  /* Premium gradient for card titles */
   background: linear-gradient(90deg, #4158d0, #c850c0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
 }
-
 /* Footer */
 footer {
   text-align: center;
   padding: 20px;
-  background: #000; /* Black for footer background */
+  background: #000;
   border-top: 1px solid #222;
   font-size: 0.9em;
   color: #888;
 }
-
-
-
