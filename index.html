@@ -10,14 +10,22 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="logo">ADRI-X</div>
-    <ul class="nav-links">
+    <div class="nav-actions">
+      <button class="login-btn">Login</button>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <ul class="nav-links" id="nav-links">
       <li><a href="#">Home</a></li>
       <li><a href="#">Products</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
   </nav>
-
+  
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
@@ -26,7 +34,7 @@
       <button>Explore Now</button>
     </div>
   </section>
-
+  
   <!-- Features -->
   <section class="features">
     <div class="card">
@@ -42,10 +50,27 @@
       <p>Unique projects to boost your learning and career.</p>
     </div>
   </section>
-
+  
   <!-- Footer -->
   <footer>
     <p>© 2025 ADRI-X. All Rights Reserved.</p>
   </footer>
+
+  <!-- Hamburger Script -->
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.onclick = function() {
+      navLinks.classList.toggle('nav-active');
+      hamburger.classList.toggle('active');
+    }
+    // Optional: Close menu when link is clicked (mobile)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('nav-active');
+        hamburger.classList.remove('active');
+      });
+    });
+  </script>
 </body>
 </html>
