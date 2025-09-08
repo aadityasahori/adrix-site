@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ADRI-X Login</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body class="dark-theme">
-
   <div class="login-container">
     <h2>Login to ADRIX</h2>
-
     <!-- Email Login -->
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
     <button onclick="loginWithEmail()">Login with Email</button>
-
     <p>Or continue with</p>
-
     <!-- Social Logins -->
     <div class="social-buttons">
       <button onclick="loginWithGoogle()">Google</button>
@@ -26,7 +22,11 @@
       <button onclick="loginWithPhone()">Phone Number</button>
     </div>
   </div>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
+  <!-- Your own Firebase config and init -->
   <script type="module" src="scripts/firebase-init.js"></script>
   <script type="module" src="assets/js/auth.js"></script>
 </body>
