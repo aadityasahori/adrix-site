@@ -18,6 +18,34 @@
     <div class="login-container" role="main" aria-labelledby="loginTitle">
       <h2 id="loginTitle">Sign in to ADRI-X</h2>
 
+      <script type="module">
+  // ✅ Import required Firebase modules
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+  import { 
+    getAuth, 
+    GoogleAuthProvider, 
+    signInWithPopup, 
+    signInWithEmailAndPassword 
+  } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+  // ✅ Your Firebase config (replace with your own from Firebase Console → Project settings)
+const firebaseConfig = {
+    apiKey: "AIzaSyDePtfAKouNDGoNY27_mIfSG096hRJ9U1U",
+    authDomain: "adrix-1.firebaseapp.com",
+    projectId: "adrix-1",
+    storageBucket: "adrix-1.firebasestorage.app",
+    messagingSenderId: "633957470456",
+    appId: "1:633957470456:web:0865dfe89f5e9f6df2ab0d"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
+
+  // ✅ Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app)
+
       <!-- Email login -->
       <div class="field">
         <input id="email" type="email" placeholder="Email" autocomplete="email" />
@@ -62,15 +90,13 @@
      <!-- status line -->
 <p id="status">Not signed in</p>
 
-  <!-- Firebase (compat) scripts — ORDER matters -->
-  <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/12.2.1/firebase-auth-compat.js"></script>
 
   <!-- Your init + auth logic -->
   <script src="scripts/firebase-init.js"></script>
   <script src="assets/js/auth.js"></script>
 </body>
 </html>
+
 
 
 
