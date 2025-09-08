@@ -22,4 +22,6 @@ if (!window.firebase) {
   console.log("Firebase initialized");
 }
 
+<!-- Custom Script -->
+<script src="login.js"></script>
 
