@@ -1,3 +1,14 @@
+:root{
+  --bg: #000;
+  --panel: rgba(255,255,255,0.05);
+  --accent1: #4158d0;
+  --accent2: #c850c0;
+  --neon: #00ff88;
+  --muted: #ccc;
+  --text: #e0e0e0;
+  --glass-blur: 10px;
+}
+
 /* General */
 * {
   margin: 0;
@@ -6,10 +17,13 @@
 }
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #000; /* Simple solid black background */
-  color: #e0e0e0;
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
+
 /* Navbar */
 .navbar {
   display: flex;
@@ -21,34 +35,39 @@ body {
   top: 0;
   z-index: 1000;
 }
+
 .logo {
   font-size: 1.8em;
   font-weight: bold;
-  background: linear-gradient(90deg,#183153,#7749f8, #1d1d8f);
+  background: linear-gradient(90deg,#183153,#7749f8,#1d1d8f);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
 }
+
 .nav-links {
   list-style: none;
   display: flex;
   gap: 25px;
 }
+
 .nav-links li a {
   text-decoration: none;
-  color: #e0e0e0;
+  color: var(--text);
   font-weight: 500;
   transition: color 0.3s;
   position: relative;
 }
+
 .nav-links li a:hover {
-  background: linear-gradient(90deg, #4158d0, #c850c0 70%);
+  background: linear-gradient(90deg, var(--accent1), var(--accent2) 70%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
 }
+
 /* Hero Section */
 .hero {
   height: 90vh;
@@ -56,57 +75,61 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: #000; /* Solid black, image removed */
+  background: var(--bg);
 }
+
 .hero-content h1 {
   font-size: 3em;
   color: #fff;
 }
+
 .hero-content h1 span {
-  background: linear-gradient(90deg, #4158d0 0%, #c850c0 90%);
+  background: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 90%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
 }
+
 .hero-content p {
   margin: 20px 0;
   font-size: 1.2em;
-  color: #ccc;
+  color: var(--muted);
 }
+
 .hero {
   display: flex;
   justify-content: center;
   gap: 30px;
   padding: 40px 10%;
-  background: #000;
-  color: #e0e0e0;
+  background: var(--bg);
+  color: var(--text);
   flex-wrap: wrap;
 }
 
 .hero-display {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--panel);
   border-radius: 15px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(var(--glass-blur));
   padding: 25px 30px;
   flex: 1 1 280px;
   text-align: center;
-  box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.08);
   transition: transform 0.3s ease;
 }
 .hero-display:hover {
   transform: translateY(-5px);
-  box-shadow: 0 0 20px #00ff88;
+  box-shadow: 0 0 22px rgba(0, 255, 136, 0.12);
 }
 .hero-display h2 {
-  color: #00ff88;
+  color: var(--neon);
   margin-bottom: 15px;
   font-size: 1.8em;
 }
 .hero-display p {
   font-size: 1.1em;
   margin-bottom: 25px;
-  color: #ccc;
+  color: var(--muted);
 }
 
 .buttons {
@@ -126,19 +149,19 @@ body {
 }
 
 .price-btn {
-  background: linear-gradient(90deg, #4158d0 0%, #c850c0 90%);
+  background: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 90%);
   color: #fff;
 }
 .price-btn:hover {
-  background: linear-gradient(90deg, #c850c0 0%, #4158d0 90%);
+  background: linear-gradient(90deg, var(--accent2) 0%, var(--accent1) 90%);
 }
 
 .demo-btn {
   background: #222;
-  color: #00ff88;
+  color: var(--neon);
 }
 .demo-btn:hover {
-  background: #00ff88;
+  background: var(--neon);
   color: #000;
 }
 
@@ -148,25 +171,27 @@ body {
     gap: 20px;
   }
   .hero-display {
-    max-width: 100%; 
+    max-width: 100%;
   }
 }
-/* Gradient Button */
+
+/* Global Gradient Button (fallback) */
 button {
-  background: linear-gradient(90deg, #4158d0 0%, #c850c0 90%);
+  background: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 90%);
   color: #fff;
   border: none;
   padding: 11px 24px;
   font-size: 0.9em;
   cursor: pointer;
   border-radius: 8px;
-  transition: all 0.3s;
+  transition: all 0.25s;
   font-weight: 600;
 }
 button:hover {
-  background: linear-gradient(90deg, #c850c0 0%, #4158d0 90%);
+  background: linear-gradient(90deg, var(--accent2) 0%, var(--accent1) 90%);
   transform: translateY(-2px);
 }
+
 /* Features Section */
 .features {
   display: flex;
@@ -177,10 +202,10 @@ button:hover {
 }
 .card {
   flex: 1;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--panel);
   padding: 30px;
   border-radius: 15px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(var(--glass-blur));
   transition: transform 0.3s, background 0.3s;
 }
 .card:hover {
@@ -189,20 +214,242 @@ button:hover {
 }
 .card h2 {
   margin-bottom: 10px;
-  background: linear-gradient(90deg, #4158d0, #c850c0);
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
 }
+
 /* Footer */
 footer {
   text-align: center;
   padding: 20px;
-  background: #000;
+  background: var(--bg);
   border-top: 1px solid #222;
   font-size: 0.9em;
   color: #888;
 }
 
+/* ---------------------------
+   LOGIN / AUTH STYLES (NEW)
+   --------------------------- */
 
+/* Centered login container (used for login.html or modal) */
+.login-container {
+  width: 420px;
+  max-width: calc(100% - 40px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.015));
+  border-radius: 14px;
+  padding: 28px;
+  margin: 40px auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 40px rgba(65,88,208,0.03);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Title */
+.login-container h2 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: #fff;
+  text-align: center;
+}
+
+/* Inputs */
+.login-container .field {
+  margin: 12px 0;
+}
+.login-container input[type="email"],
+.login-container input[type="password"],
+.login-container input[type="tel"],
+.login-container .otp-input {
+  width: 100%;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.04);
+  color: var(--text);
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.95rem;
+  transition: box-shadow 0.18s, transform 0.12s;
+}
+.login-container input::placeholder {
+  color: #999;
+}
+
+.login-container input:focus {
+  box-shadow: 0 4px 18px rgba(65,88,208,0.12), 0 0 12px rgba(0,255,136,0.05);
+  transform: translateY(-1px);
+  border-color: rgba(65,88,208,0.5);
+}
+
+/* OTP inline inputs (if using 6 single-char boxes) */
+.otp-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 8px 0 18px;
+}
+.otp-row input {
+  width: 46px;
+  height: 56px;
+  text-align: center;
+  font-size: 1.2rem;
+  letter-spacing: 6px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.04);
+  color: var(--text);
+}
+.otp-row input:focus {
+  box-shadow: 0 6px 18px rgba(65,88,208,0.12), 0 0 10px rgba(0,255,136,0.06);
+  border-color: rgba(65,88,208,0.6);
+}
+
+/* Primary login button */
+.login-primary {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 90%);
+  color: #fff;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.login-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(200,80,192,0.08);
+}
+
+/* "Or continue with" separator */
+.or-sep {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+.or-sep::before,
+.or-sep::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.03);
+}
+
+/* Social login buttons row */
+.social-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Generic auth button */
+.auth-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+/* Icons placeholder (if you add icon <span class="icon">) */
+.auth-btn .icon {
+  width: 20px;
+  height: 20px;
+  display: inline-grid;
+  place-items: center;
+  font-size: 14px;
+}
+
+/* Variants */
+.auth-btn.google {
+  background: linear-gradient(180deg, #fff, #fafafa);
+  color: #111;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.auth-btn.google:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+
+.auth-btn.apple {
+  background: linear-gradient(180deg, #0b0b0b, #161616);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.auth-btn.apple:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255,255,255,0.03); }
+
+.auth-btn.microsoft {
+  background: linear-gradient(90deg, #2b90ff 0%, #8a2be2 100%);
+  color: #fff;
+  border: none;
+}
+.auth-btn.microsoft:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(138,43,226,0.12); }
+
+.auth-btn.phone {
+  background: rgba(0,255,136,0.06);
+  color: var(--neon);
+  border: 1px solid rgba(0,255,136,0.12);
+}
+.auth-btn.phone:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,255,136,0.06); }
+
+/* small helper for buttons with text + small note */
+.btn-note {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-top: 6px;
+  text-align: center;
+}
+
+/* Status text */
+#status {
+  margin-top: 12px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* recaptcha placeholder styling (centered) */
+#recaptcha-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Modal style (optional, if you build modal) */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: grid;
+  place-items: center;
+  z-index: 2000;
+}
+.modal .panel {
+  width: 480px;
+  max-width: calc(100% - 32px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: 14px;
+  padding: 24px;
+}
+
+/* tiny responsiveness */
+@media (max-width: 600px) {
+  .nav-links { display:none; }
+  .login-container { width: 94%; padding: 18px; margin: 20px auto; }
+  .hero-content h1 { font-size: 2rem; }
+  .otp-row input { width: 44px; height: 52px; font-size: 1.05rem; }
+}
+
+/* Accessibility / focus outlines */
+.auth-btn:focus, .login-primary:focus, input:focus {
+  outline: 3px solid rgba(65,88,208,0.12);
+  outline-offset: 2px;
+}
