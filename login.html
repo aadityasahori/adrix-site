@@ -45,7 +45,12 @@
   const auth = getAuth(app);
 
   // ✅ Google Login
-  document.getElementById("google-login").addEventListener("click", async () => {
+  document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("google-login").addEventListener("click", () => {
+    console.log("Google button clicked!");
+  });
+});
+
     const provider = new GoogleAuthProvider();
     try {
       const result = await signInWithPopup(auth, provider);
@@ -155,6 +160,7 @@
   <script type="module">"auth.js"</script>
 </body>
 </html>
+
 
 
 
