@@ -69,14 +69,19 @@
       <p>Driving innovation to help Students, Startups and Organizations shape the future.</p>
     </div>
       
-     <script>
+    <script>
   const hamburger = document.getElementById("hamburger");
-  const navLinks = document.getElementById("navLinks");
+  const sidebar = document.getElementById("sidebar");
 
   hamburger.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
+    if (sidebar.style.width === "250px") {
+      sidebar.style.width = "0";
+    } else {
+      sidebar.style.width = "250px";
+    }
   });
 </script>
+
 
   </section>
   <!-- Footer -->
@@ -85,6 +90,7 @@
   </footer>
 </body>
 </html>        
+
 
 
 
