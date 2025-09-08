@@ -23,7 +23,20 @@
       <li><a href="#">Contact</a></li>
     </ul>
 </nav>
-  
+
+        <script>
+  const hamburger = document.getElementById("hamburger");
+  const sidebar = document.getElementById("sidebar");
+
+  hamburger.addEventListener("click", () => {
+    if (sidebar.style.width === "250px") {
+      sidebar.style.width = "0";
+    } else {
+      sidebar.style.width = "250px";
+    }
+  });
+</script>
+      
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
@@ -68,20 +81,6 @@
       <h2>💡 Innovation</h2>
       <p>Driving innovation to help Students, Startups and Organizations shape the future.</p>
     </div>
-      
-    <script>
-  const hamburger = document.getElementById("hamburger");
-  const sidebar = document.getElementById("sidebar");
-
-  hamburger.addEventListener("click", () => {
-    if (sidebar.style.width === "250px") {
-      sidebar.style.width = "0";
-    } else {
-      sidebar.style.width = "250px";
-    }
-  });
-</script>
-
 
   </section>
   <!-- Footer -->
@@ -90,6 +89,7 @@
   </footer>
 </body>
 </html>        
+
 
 
 
