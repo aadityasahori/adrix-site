@@ -23,5 +23,6 @@ if (!window.firebase) {
 }
 
 <!-- Custom Script -->
-<script src="login.js"></script>
+<script src="auth.js"></script>
+
 
