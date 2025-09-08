@@ -59,9 +59,42 @@
         <div id="recaptcha-container"></div>
       </div>
 
-      <p id="status">Not signed in</p>
-    </div>
-  </main>
+     <!-- status line -->
+<p id="status">Not signed in</p>
+
+<!-- email/password -->
+<input id="email" type="email" placeholder="Email" />
+<input id="password" type="password" placeholder="Password" />
+<button id="emailLoginBtn" class="login-primary">Login with Email</button>
+
+<!-- social/other -->
+<button id="googleLogin" class="auth-btn google">Continue with Google</button>
+<button id="appleLogin" class="auth-btn apple">Continue with Apple</button>
+<button id="microsoftLogin" class="auth-btn microsoft">Continue with Microsoft</button>
+
+<!-- phone flow toggle/button -->
+<button id="phoneLogin" class="auth-btn phone">Continue with Phone</button>
+
+<!-- phone flow fields (hidden by default) -->
+<div id="phoneFlow" style="display:none;">
+  <input id="phoneNumber" type="tel" placeholder="+91 98765 43210" />
+  <button id="sendOtpBtn" class="login-primary">Send OTP</button>
+
+  <div id="otpRow" class="otp-row" style="display:none;">
+    <input class="otp-input" maxlength="1" />
+    <input class="otp-input" maxlength="1" />
+    <input class="otp-input" maxlength="1" />
+    <input class="otp-input" maxlength="1" />
+    <input class="otp-input" maxlength="1" />
+    <input class="otp-input" maxlength="1" />
+  </div>
+
+  <button id="verifyOtpBtn" class="login-primary" style="display:none;">Verify OTP</button>
+</div>
+
+<!-- recaptcha placeholder (required for phone) -->
+<div id="recaptcha-container"></div>
+
 
   <!-- Firebase (compat) scripts — ORDER matters -->
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
@@ -72,6 +105,7 @@
   <script src="assets/js/auth.js"></script>
 </body>
 </html>
+
 
 
 
