@@ -1,6 +1,3 @@
-// scripts/firebase-init.js
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDePtfAKouNDGoNY27_mIfSG096hRJ9U1U",
@@ -11,7 +8,18 @@ const firebaseConfig = {
   appId: "1:633957470456:web:0865dfe89f5e9f6df2ab0d"
 };
 
-export const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+// initialize once
+if (!window.firebase) {
+  console.error("Firebase library not loaded.");
+} else {
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  } else {
+    firebase.app();
+  }
+  // expose auth globally
+  window.auth = firebase.auth();
+  console.log("Firebase initialized");
+}
 
 
