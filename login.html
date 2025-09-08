@@ -1,34 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ADRI-X Login</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ADRI-X — Login</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-<body class="dark-theme">
-  <div class="login-container">
-    <h2>Login to ADRIX</h2>
-    <!-- Email Login -->
-    <input type="email" id="email" placeholder="Email" />
-    <input type="password" id="password" placeholder="Password" />
-    <button onclick="loginWithEmail()">Login with Email</button>
-    <p>Or continue with</p>
-    <!-- Social Logins -->
-    <div class="social-buttons">
-      <button onclick="loginWithGoogle()">Google</button>
-      <button onclick="loginWithApple()">Apple</button>
-      <button onclick="loginWithMicrosoft()">Microsoft</button>
-      <button onclick="loginWithPhone()">Phone Number</button>
-    </div>
-  </div>
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app"-compat.js></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<body>
+  <nav class="navbar">
+    <div class="logo">ADRI-X</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+    </ul>
+  </nav>
 
-  <!-- Your own Firebase config and init -->
-  <script type="module" src="scripts/firebase-init.js"></script>
-  <script type="module" src="assets/js/auth.js"></script>
+  <main>
+    <div class="login-container" role="main" aria-labelledby="loginTitle">
+      <h2 id="loginTitle">Sign in to ADRI-X</h2>
+
+      <!-- Email login -->
+      <div class="field">
+        <input id="email" type="email" placeholder="Email" autocomplete="email" />
+      </div>
+      <div class="field">
+        <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
+      </div>
+      <button id="emailLoginBtn" class="login-primary">Login with Email</button>
+
+      <div class="or-sep">Or continue with</div>
+
+      <!-- Social + Phone -->
+      <div class="social-row">
+        <button id="googleLogin" class="auth-btn google"><span class="icon">G</span> Continue with Google</button>
+        <button id="appleLogin" class="auth-btn apple"><span class="icon"></span> Continue with Apple</button>
+        <button id="microsoftLogin" class="auth-btn microsoft"><span class="icon">M</span> Continue with Microsoft</button>
+        <button id="phoneLogin" class="auth-btn phone"><span class="icon">📱</span> Continue with Phone</button>
+      </div>
+
+      <!-- Phone flow: phone input + recaptcha container (hidden initially) -->
+      <div id="phoneFlow" style="display:none; margin-top:12px;">
+        <div class="field">
+          <input id="phoneNumber" type="tel" placeholder="+91 98765 43210" />
+        </div>
+        <button id="sendOtpBtn" class="login-primary">Send OTP</button>
+
+        <!-- OTP inputs (optional) -->
+        <div class="otp-row" id="otpRow" style="display:none; margin-top:10px;">
+          <input class="otp-input" maxlength="1" inputmode="numeric" />
+          <input class="otp-input" maxlength="1" inputmode="numeric" />
+          <input class="otp-input" maxlength="1" inputmode="numeric" />
+          <input class="otp-input" maxlength="1" inputmode="numeric" />
+          <input class="otp-input" maxlength="1" inputmode="numeric" />
+          <input class="otp-input" maxlength="1" inputmode="numeric" />
+        </div>
+
+        <button id="verifyOtpBtn" class="login-primary" style="display:none; margin-top:10px;">Verify OTP</button>
+        <div id="recaptcha-container"></div>
+      </div>
+
+      <p id="status">Not signed in</p>
+    </div>
+  </main>
+
+  <!-- Firebase (compat) scripts — ORDER matters -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+
+  <!-- Your init + auth logic -->
+  <script src="scripts/firebase-init.js"></script>
+  <script src="assets/js/auth.js"></script>
 </body>
 </html>
 
