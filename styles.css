@@ -718,6 +718,18 @@ footer {
   background: #6a11cb;
 }
 
+/* Hero Products Special */
+.hero-products {
+  padding: 50px 20px;
+}
+
+.hero-products .product-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
 
 
 
