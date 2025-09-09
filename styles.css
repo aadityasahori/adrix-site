@@ -68,6 +68,44 @@ body {
   text-fill-color: transparent;
 }
 
+/* Sidebar base */
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: #111;
+  overflow-x: hidden;
+  transition: 0.4s;
+  padding-top: 60px;
+  z-index: 2000;
+}
+
+/* Sidebar content */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 15px 25px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  font-size: 1.2em;
+  color: #e0e0e0;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar ul li a:hover {
+  background: linear-gradient(90deg, #4158d0, #c850c0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* Hamburger Button */
 .hamburger {
   background: linear-gradient(90deg, #4158d0, #c850c0);
@@ -83,65 +121,6 @@ body {
 .hamburger:hover {
   background: linear-gradient(90deg, #c850c0, #4158d0);
 }
-
-/* Hamburger Button */
-.hamburger {
-  font-size: 28px;
-  cursor: pointer;
-  color: #fff;
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 1100;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 10px 15px;
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
-  transition: background 0.3s;
-}
-.hamburger:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* Sidebar */
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: -260px; /* hidden by default */
-  width: 250px;
-  height: 100%;
-  background: rgba(20, 20, 20, 0.7);
-  backdrop-filter: blur(12px);
-  box-shadow: 2px 0 15px rgba(0,0,0,0.4);
-  transition: left 0.3s ease;
-  z-index: 1050;
-  padding-top: 60px;
-}
-.sidebar.active {
-  left: 0;
-}
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-.sidebar ul li {
-  margin: 20px 0;
-}
-.sidebar ul li a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 1.2em;
-  transition: color 0.3s;
-}
-.sidebar ul li a:hover {
-  color: #00ff88;
-}
-
-/* Page content spacing (prevent overlap) */
-body {
-  padding-left: 0;
-}
-
 
 /* Sidebar with glassmorphism */
 .sidebar {
@@ -590,6 +569,7 @@ footer {
   outline: 3px solid rgba(65,88,208,0.12);
   outline-offset: 2px;
 }
+
 
 
 
