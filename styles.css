@@ -84,42 +84,49 @@ body {
   background: linear-gradient(90deg, #c850c0, #4158d0);
 }
 
-/* Sidebar base */
+/* Sidebar with glassmorphism */
 .sidebar {
   height: 100%;
-  width: 0;
+  width: 250px;
   position: fixed;
   top: 0;
-  right: 0;
-  background: #111;
+  left: 0;
+  background: rgba(22, 27, 34, 0.6); /* semi-transparent */
+  backdrop-filter: blur(12px);       /* blur effect */
+  -webkit-backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
   overflow-x: hidden;
-  transition: 0.4s;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
   padding-top: 60px;
-  z-index: 2000;
+  z-index: 2200;
 }
 
-/* Sidebar content */
+.sidebar.active {
+  transform: translateX(0);
+}
+
 .sidebar ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .sidebar ul li {
-  padding: 15px 25px;
+  padding: 15px;
+  text-align: center;
 }
 
 .sidebar ul li a {
+  color: #f0f6fc;
   text-decoration: none;
-  font-size: 1.2em;
-  color: #e0e0e0;
+  font-size: 1.2rem;
   display: block;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
 .sidebar ul li a:hover {
-  background: linear-gradient(90deg, #4158d0, #c850c0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* Hamburger Button */
@@ -524,6 +531,7 @@ footer {
   outline: 3px solid rgba(65,88,208,0.12);
   outline-offset: 2px;
 }
+
 
 
 
