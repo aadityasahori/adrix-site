@@ -84,6 +84,65 @@ body {
   background: linear-gradient(90deg, #c850c0, #4158d0);
 }
 
+/* Hamburger Button */
+.hamburger {
+  font-size: 28px;
+  cursor: pointer;
+  color: #fff;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1100;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 15px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  transition: background 0.3s;
+}
+.hamburger:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px; /* hidden by default */
+  width: 250px;
+  height: 100%;
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(12px);
+  box-shadow: 2px 0 15px rgba(0,0,0,0.4);
+  transition: left 0.3s ease;
+  z-index: 1050;
+  padding-top: 60px;
+}
+.sidebar.active {
+  left: 0;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar ul li {
+  margin: 20px 0;
+}
+.sidebar ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2em;
+  transition: color 0.3s;
+}
+.sidebar ul li a:hover {
+  color: #00ff88;
+}
+
+/* Page content spacing (prevent overlap) */
+body {
+  padding-left: 0;
+}
+
+
 /* Sidebar with glassmorphism */
 .sidebar {
   height: 100%;
@@ -531,6 +590,7 @@ footer {
   outline: 3px solid rgba(65,88,208,0.12);
   outline-offset: 2px;
 }
+
 
 
 
