@@ -56,7 +56,7 @@
     <button>₹14999 / $180</button>
     <button>Preview</button>
   </div>
-
+ </section>
 
  
   <section class="features">
@@ -72,14 +72,30 @@
       <h2>💡 Innovation</h2>
       <p>Driving innovation to help Students, Startups and Organizations shape the future.</p>
     </div>
-
+ </section>
+  
   </section>
   <!-- Footer -->
   <footer>
     <p>© 2025 ADRI-X. All Rights Reserved.</p>
   </footer>
 
-// Open / Close on hamburger
+<script>
+    const hamburger = document.getElementById("hamburger");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    function openSidebar() {
+      sidebar.style.width = "250px";
+      overlay.style.display = "block";
+    }
+
+    function closeSidebar() {
+      sidebar.style.width = "0";
+      overlay.style.display = "none";
+    }
+
+    // Toggle sidebar
     hamburger.addEventListener("click", () => {
       if (sidebar.style.width === "250px") {
         closeSidebar();
@@ -88,17 +104,17 @@
       }
     });
 
-    // Close on overlay click
+    // Close when overlay clicked
     overlay.addEventListener("click", closeSidebar);
 
-    // Close on menu link click
+    // Close when menu link clicked
     document.querySelectorAll(".sidebar a").forEach(link => {
       link.addEventListener("click", closeSidebar);
     });
-     
   </script>
 </body>
 </html>        
+
 
 
 
