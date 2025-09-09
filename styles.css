@@ -611,6 +611,26 @@ footer {
   backdrop-filter: blur(12px);
 }
 
+.explore-btn {
+  display: inline-block;
+  text-decoration: none;   /* underline hatane ke liye */
+  background: linear-gradient(90deg, #4158d0, #c850c0);
+  border: none;
+  padding: 12px 25px;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.explore-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(90deg, #c850c0, #4158d0);
+}
+
+
 
 
 
