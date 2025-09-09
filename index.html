@@ -80,24 +80,24 @@
     <p>© 2025 ADRI-X. All Rights Reserved.</p>
   </footer>
 
- <script>
+  <script>
     const hamburger = document.getElementById("hamburger");
     const sidebar = document.getElementById("sidebar");
     const overlay = document.getElementById("overlay");
 
     function openSidebar() {
-      sidebar.classList.add("active");
+      sidebar.style.width = "250px";
       overlay.style.display = "block";
     }
 
     function closeSidebar() {
-      sidebar.classList.remove("active");
+      sidebar.style.width = "0";
       overlay.style.display = "none";
     }
 
     // Toggle sidebar
     hamburger.addEventListener("click", () => {
-      if (sidebar.classList.contains("active")) {
+      if (sidebar.style.width === "250px") {
         closeSidebar();
       } else {
         openSidebar();
@@ -114,6 +114,7 @@
   </script>
 </body>
 </html>        
+
 
 
 
