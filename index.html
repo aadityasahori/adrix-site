@@ -80,40 +80,53 @@
     <p>© 2025 ADRI-X. All Rights Reserved.</p>
   </footer>
 
-<<script>
-    const hamburger = document.getElementById("hamburger");
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("overlay");
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const sidebar = document.getElementById("sidebar");
+  const overlay = document.getElementById("overlay");
 
-    function openSidebar() {
-      sidebar.classList.add("active");
-      overlay.style.display = "block";
+  function openSidebar() {
+    sidebar.classList.add("active");
+    overlay.style.display = "block";
+  }
+
+  function closeSidebar() {
+    sidebar.classList.remove("active");
+    overlay.style.display = "none";
+  }
+
+  // Toggle sidebar
+  hamburger.addEventListener("click", (e) => {
+    e.stopPropagation(); // Stop event bubbling (so that click on button doesn’t immediately close menu)
+    if (sidebar.classList.contains("active")) {
+      closeSidebar();
+    } else {
+      openSidebar();
     }
+  });
 
-    function closeSidebar() {
-      sidebar.classList.remove("active");
-      overlay.style.display = "none";
+  // Close when overlay clicked
+  overlay.addEventListener("click", closeSidebar);
+
+  // Close when menu link clicked
+  document.querySelectorAll(".sidebar a").forEach(link => {
+    link.addEventListener("click", closeSidebar);
+  });
+
+  // Close when clicking outside (anywhere on body except sidebar & hamburger)
+  document.addEventListener("click", (e) => {
+    if (
+      sidebar.classList.contains("active") &&
+      !sidebar.contains(e.target) &&
+      e.target !== hamburger
+    ) {
+      closeSidebar();
     }
-
-    // Toggle sidebar
-    hamburger.addEventListener("click", () => {
-      if (sidebar.classList.contains("active")) {
-        closeSidebar();
-      } else {
-        openSidebar();
-      }
-    });
-
-    // Close when overlay clicked
-    overlay.addEventListener("click", closeSidebar);
-
-    // Close when menu link clicked
-    document.querySelectorAll(".sidebar a").forEach(link => {
-      link.addEventListener("click", closeSidebar);
-    });
+  });
   </script>
 </body>
 </html>        
+
 
 
 
