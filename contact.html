@@ -18,9 +18,14 @@
     <p>We’d love to hear from you. Fill out the form below or reach us via email.</p>
 
     <form class="contact-form">
+      <form id="contactForm" action="https://formspree.io/f/mvgblnpe" method="POST">
       <input type="text" placeholder="Your Name" required>
       <input type="email" placeholder="Your Email" required>
       <textarea placeholder="Your Message" rows="5" required></textarea>
+
+         <!-- optional: redirect after submit -->
+    <input type="hidden" name="_redirect" value="https://www.adrix.shop/thank-you.html">
+        
       <button type="submit">Send Message</button>
     </form>
   </section>
@@ -33,4 +38,5 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
