@@ -1,0 +1,120 @@
+/* General reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  background: url("comingsoon.jpg") no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Background overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 5, 30, 0.7);
+  z-index: 1;
+}
+
+/* Content section */
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  animation: fadeIn 2s ease;
+}
+
+.subtitle {
+  font-size: 14px;
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+
+.title {
+  font-size: 48px;
+  letter-spacing: 6px;
+  margin-top: 10px;
+  animation: fadeSlide 2s ease;
+}
+
+/* Progress bar */
+.progress-bar {
+  width: 200px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  margin: 30px auto;
+  overflow: hidden;
+}
+
+.progress {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #38b6ff, #ff007f);
+  border-radius: 3px;
+  animation: progressAnim 4s ease forwards;
+}
+
+.progress-text {
+  font-size: 14px;
+  color: #ccc;
+  animation: fadeIn 2s ease 1.5s forwards;
+  opacity: 0;
+}
+
+/* Animations */
+@keyframes progressAnim {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 62%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth page load animation */
+body {
+  animation: pageFadeIn 1.5s ease;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
