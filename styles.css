@@ -16,7 +16,7 @@
   box-sizing: border-box;
 }
 body {
-  font-family: 'DM Sans', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Sans Serif', Tahoma, Geneva, Verdana, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
@@ -1203,5 +1203,6 @@ footer {
     transition: none !important;
   }
 }
+
 
 
