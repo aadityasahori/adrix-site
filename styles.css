@@ -943,3 +943,172 @@ footer {
     font-size: 0.9em;
   }
 }
+
+/* ✅ Coming Soon Page - Protected Styling (Only for personalizesetup.html) */
+
+.comingsoon-page {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(ellipse at bottom, #0d1b2a, #000);
+  overflow: hidden;
+  color: #fff;
+  position: relative;
+}
+
+/* 🌌 BACKGROUND IMAGE OR VIDEO */
+.comingsoon-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("comingsoon.jpg") no-repeat center center/cover;
+  filter: brightness(0.4) blur(1px);
+  z-index: -2;
+  animation: fadeInBg 2s ease-in-out forwards;
+}
+
+/* 🎨 OVERLAY */
+.comingsoon-page::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(0, 0, 0, 0.4), rgba(10, 15, 25, 0.8));
+  z-index: -1;
+  animation: fadeInOverlay 2s ease-in-out forwards;
+}
+
+/* 💫 CONTAINER */
+.comingsoon-page .container {
+  text-align: center;
+  animation: fadeInUp 2.5s ease forwards;
+  opacity: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* 🪐 MAIN TEXT */
+.comingsoon-page .container h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  animation: glow 3s ease-in-out infinite alternate, slideDown 1.5s ease-out forwards;
+  opacity: 0;
+}
+
+/* 🧾 SUBTEXT */
+.comingsoon-page .container p {
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: #b8c7ff;
+  margin-top: 20px;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeIn 2s 1.5s forwards;
+}
+
+/* 🔄 PROGRESS BAR */
+.comingsoon-page .progress-bar {
+  width: 220px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  margin: 25px auto;
+  overflow: hidden;
+}
+
+.comingsoon-page .progress {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #00c6ff, #ff00e0);
+  border-radius: 10px;
+  animation: loadProgress 5s ease-in-out forwards;
+}
+
+/* ✨ ANIMATIONS */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInBg {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInOverlay {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #fff, 0 0 15px #00c6ff, 0 0 25px #0072ff;
+  }
+  to {
+    text-shadow: 0 0 10px #fff, 0 0 25px #ff00e0, 0 0 40px #ff0080;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes loadProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* 🪶 RESPONSIVE */
+@media (max-width: 600px) {
+  .comingsoon-page .container h1 {
+    font-size: 2.2rem;
+    letter-spacing: 4px;
+  }
+
+  .comingsoon-page .container p {
+    font-size: 0.9rem;
+  }
+}
