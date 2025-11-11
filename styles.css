@@ -1204,5 +1204,64 @@ footer {
   }
 }
 
+/* Navbar base styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background-color: #222;
+  color: #fff;
+}
+
+/* Left, Center, Right sections */
+.nav-left, .nav-center, .nav-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* Center alignment */
+.nav-center {
+  justify-content: center;
+}
+
+/* Search bar styling */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #333;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+.search-bar input {
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 5px;
+  width: 200px;
+}
+
+.search-bar button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Right section links */
+.nav-right a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-right a:hover {
+  color: #00bcd4;
+}
+
+
 
 
