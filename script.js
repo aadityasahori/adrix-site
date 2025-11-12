@@ -23,6 +23,36 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (err) {
       console.error("Search error:", err);
       alert("Search failed. Check console for details.");
+
+      loginBtn.addEventListener("click", async () => {
+  try {
+    const userCredential = await firebase.auth().signInWithEmailAndPassword(
+      emailInput.value,
+      passwordInput.value
+    );
+    statusText.textContent = `Logged in as ${userCredential.user.email}`;
+  } catch (error) {
+    statusText.textContent = error.message;
+  }
+});
+
+// LOGOUT
+logoutBtn.addEventListener("click", async () => {
+  await firebase.auth().signOut();
+});
+
+// Listen for auth changes
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    statusText.textContent = `Logged in as ${user.email}`;
+    logoutBtn.style.display = "inline-block";
+    loginBtn.style.display = "none";
+    signupBtn.style.display = "none";
+  } else {
+    statusText.textContent = "Not logged in";
+    logoutBtn.style.display = "none";
+    loginBtn.style.display = "inline-block";
+    signupBtn.style.display = "inline-block";
     }
   });
 });
