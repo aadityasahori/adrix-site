@@ -63,8 +63,18 @@
   </main>
 
   <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js"></script>
+  // Import only what you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import { 
+    getAuth, 
+    signInWithEmailAndPassword, 
+    GoogleAuthProvider, 
+    signInWithPopup,
+    OAuthProvider,
+    RecaptchaVerifier,
+    signInWithPhoneNumber,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
   <!-- Initialize Firebase -->
   <script>
@@ -156,3 +166,4 @@
   </script>
 </body>
 </html>
+
