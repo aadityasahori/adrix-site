@@ -14,31 +14,30 @@
     </ul>
   </nav>
 
-      <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-  import { 
-    getAuth, 
-    GoogleAuthProvider, 
-    OAuthProvider, 
-    signInWithPopup,
-    signInWithEmailAndPassword,
-    RecaptchaVerifier,
-    signInWithPhoneNumber
-  } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+     <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js"></script>
 
-  // 🔑 Firebase config
-   const firebaseConfig = {
-    apiKey: "AIzaSyDePtfAKouNDGoNY27_mIfSG096hRJ9U1U",
-    authDomain: "adrix-1.firebaseapp.com",
-    projectId: "adrix-1",
-    storageBucket: "adrix-1.firebasestorage.app",
-    messagingSenderId: "633957470456",
-    appId: "1:633957470456:web:0865dfe89f5e9f6df2ab0d"
-  };
+<!-- Your Firebase Configuration -->
+<script>
+  const firebaseConfig = {
+  apiKey: "AIzaSyDePtfAKouNDGoNY27_mIfSG096hRJ9U1U",
+  authDomain: "adrix-1.firebaseapp.com",
+  projectId: "adrix-1",
+  storageBucket: "adrix-1.firebasestorage.app",
+  messagingSenderId: "633957470456",
+  appId: "1:633957470456:web:0865dfe89f5e9f6df2ab0d"
+};
 
-  // 🔑 Firebase init
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+  // Initialize Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+</script>
+
+<!-- Your custom login script -->
+<script src="login.js"></script>
+</body>
+</html>
 
   // ✅ Google Login
   document.getElementById("google-login").addEventListener("click", () => {
@@ -151,9 +150,10 @@
 
   <!-- Your init + auth logic -->
   <script type="module">"firebase-init.js"</script>
-  <script type="module">"auth.js"</script>
+  <script type="module">"script.js"</script>
 </body>
 </html>
+
 
 
 
