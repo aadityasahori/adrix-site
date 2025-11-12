@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ADRI-X — Login</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <nav class="navbar">
@@ -14,159 +14,145 @@
     </ul>
   </nav>
 
-     <!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js"></script>
-
-<!-- Your Firebase Configuration -->
-<script>
-  const firebaseConfig = {
-  apiKey: "AIzaSyDePtfAKouNDGoNY27_mIfSG096hRJ9U1U",
-  authDomain: "adrix-1.firebaseapp.com",
-  projectId: "adrix-1",
-  storageBucket: "adrix-1.firebasestorage.app",
-  messagingSenderId: "633957470456",
-  appId: "1:633957470456:web:0865dfe89f5e9f6df2ab0d"
-};
-
-  // Initialize Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-</script>
-
-<!-- Your custom login script -->
-<script src="login.js"></script>
-</body>
-</html>
-
-  // ✅ Google Login
-  document.getElementById("google-login").addEventListener("click", () => {
-    const provider = new GoogleAuthProvider();
-    try {
-      const result = await signInWithPopup(auth, provider);
-      alert("Welcome " + result.user.displayName);
-    } catch (err) {
-      console.error(err);
-    }
-  });
-
-  // ✅ Microsoft Login
-  document.getElementById("microsoft-login").addEventListener("click", async () => {
-    const provider = new OAuthProvider('microsoft.com');
-    try {
-      const result = await signInWithPopup(auth, provider);
-      alert("Microsoft User: " + result.user.displayName);
-    } catch (err) {
-      console.error(err);
-    }
-  });
-
-  // ✅ Apple Login
-  document.getElementById("apple-login").addEventListener("click", async () => {
-    const provider = new OAuthProvider('apple.com');
-    try {
-      const result = await signInWithPopup(auth, provider);
-      alert("Apple User: " + result.user.displayName);
-    } catch (err) {
-      console.error(err);
-    }
-  });
-
-  // ✅ Email Login 
-  document.getElementById("email-login").addEventListener("click", async () => {
-    try {
-      const email = prompt("Enter Email");
-      const password = prompt("Enter Password");
-      const result = await signInWithEmailAndPassword(auth, email, password);
-      alert("Welcome " + result.user.email);
-    } catch (err) {
-      console.error(err);
-    }
-  });
-
-  // ✅ Phone Login
-  document.getElementById("phone-login").addEventListener("click", async () => {
-    const phoneNumber = prompt("Enter Phone Number (+91...)");
-    const appVerifier = new RecaptchaVerifier(auth, 'phone-login', {});
-    try {
-      const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
-      const code = prompt("Enter OTP");
-      const result = await confirmationResult.confirm(code);
-      alert("Phone Auth User: " + result.user.phoneNumber);
-    } catch (err) {
-      console.error(err);
-    }
-  });
-</script>
-
-    <main>
+  <main>
     <div class="login-container" role="main" aria-labelledby="loginTitle">
       <h2 id="loginTitle">Sign in to ADRI-X</h2>
+
       <!-- EMAIL / PASSWORD -->
-    <div class="field">
-      <input id="email" type="email" placeholder="Email" autocomplete="email" />
-    </div>
-    <div class="field">
-      <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
-    </div>
-    <button id="email-Login" class="login-primary">Login with Email</button>
-
-    <div class="or-sep">Or continue with</div>
-
-    <!-- SOCIAL BUTTONS -->
-    <div class="social-row">
-      <button id="google-Login" class="auth-btn google"><span class="icon">G</span> Continue with Google</button>
-      <button id="apple-Login" class="auth-btn apple"><span class="icon"></span> Continue with Apple</button>
-      <button id="microsoft-Login" class="auth-btn microsoft"><span class="icon">M</span> Continue with Microsoft</button>
-      <button id="phone-Login" class="auth-btn phone"><span class="icon">📱</span> Continue with Phone</button>
-    </div>
-
-    <!-- PHONE FLOW (hidden initially) -->
-    <div id="phoneFlow" style="display:none; margin-top:12px;">
       <div class="field">
-        <input id="phoneNumber" type="tel" placeholder="+91 98765 43210" autocomplete="tel" />
+        <input id="email" type="email" placeholder="Email" autocomplete="email" />
       </div>
-      <button id="sendOtpBtn" class="login-primary">Send OTP</button>
+      <div class="field">
+        <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
+      </div>
+      <button id="email-login" class="login-primary">Login with Email</button>
 
-      <!-- OTP row (optional single-box inputs) -->
-      <div id="otpRow" class="otp-row" style="display:none; margin-top:10px;">
-        <input class="otp-input" maxlength="1" inputmode="numeric" />
-        <input class="otp-input" maxlength="1" inputmode="numeric" />
-        <input class="otp-input" maxlength="1" inputmode="numeric" />
-        <input class="otp-input" maxlength="1" inputmode="numeric" />
-        <input class="otp-input" maxlength="1" inputmode="numeric" />
-        <input class="otp-input" maxlength="1" inputmode="numeric" />
+      <div class="or-sep">Or continue with</div>
+
+      <!-- SOCIAL BUTTONS -->
+      <div class="social-row">
+        <button id="google-login" class="auth-btn google"><span class="icon">G</span> Continue with Google</button>
+        <button id="apple-login" class="auth-btn apple"><span class="icon"></span> Continue with Apple</button>
+        <button id="microsoft-login" class="auth-btn microsoft"><span class="icon">M</span> Continue with Microsoft</button>
+        <button id="phone-login" class="auth-btn phone"><span class="icon">📱</span> Continue with Phone</button>
       </div>
 
-      <button id="verifyOtpBtn" class="login-primary" style="display:none; margin-top:10px;">Verify OTP</button>
+      <!-- PHONE FLOW (hidden initially) -->
+      <div id="phoneFlow" style="display:none; margin-top:12px;">
+        <div class="field">
+          <input id="phoneNumber" type="tel" placeholder="+91 98765 43210" autocomplete="tel" />
+        </div>
+        <button id="sendOtpBtn" class="login-primary">Send OTP</button>
 
-      <!-- recaptcha placeholder required by Firebase phone auth -->
-      <div id="recaptcha-container"></div>
+        <!-- OTP row -->
+        <div id="otpRow" class="otp-row" style="display:none; margin-top:10px;">
+          <input class="otp-input" maxlength="1" inputmode="numeric" />
+          <input class="otp-input" maxlength="1" inputmode="numeric" />
+          <input class="otp-input" maxlength="1" inputmode="numeric" />
+          <input class="otp-input" maxlength="1" inputmode="numeric" />
+          <input class="otp-input" maxlength="1" inputmode="numeric" />
+          <input class="otp-input" maxlength="1" inputmode="numeric" />
+        </div>
+
+        <button id="verifyOtpBtn" class="login-primary" style="display:none; margin-top:10px;">Verify OTP</button>
+        <div id="recaptcha-container"></div>
+      </div>
+
+      <p id="status">Not signed in</p>
     </div>
+  </main>
 
-     <!-- status line -->
-<p id="status">Not signed in</p>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js"></script>
 
+  <!-- Initialize Firebase -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDePtfAKouNDGoNY27_mIfSG096hRJ9U1U",
+      authDomain: "adrix-1.firebaseapp.com",
+      projectId: "adrix-1",
+      storageBucket: "adrix-1.firebasestorage.app",
+      messagingSenderId: "633957470456",
+      appId: "1:633957470456:web:0865dfe89f5e9f6df2ab0d"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+  </script>
 
-  <!-- Your init + auth logic -->
-  <script type="module">"firebase-init.js"</script>
-  <script type="module">"script.js"</script>
+  <!-- Login Logic -->
+  <script>
+    const googleBtn = document.getElementById("google-login");
+    const microsoftBtn = document.getElementById("microsoft-login");
+    const appleBtn = document.getElementById("apple-login");
+    const emailBtn = document.getElementById("email-login");
+    const phoneBtn = document.getElementById("phone-login");
+    const statusLine = document.getElementById("status");
+
+    // Email login
+    emailBtn.addEventListener("click", async () => {
+      try {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const result = await auth.signInWithEmailAndPassword(email, password);
+        alert("Welcome " + result.user.email);
+        statusLine.textContent = "Signed in as " + result.user.email;
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+
+    // Google login
+    googleBtn.addEventListener("click", async () => {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      try {
+        const result = await auth.signInWithPopup(provider);
+        alert("Welcome " + result.user.displayName);
+      } catch (err) {
+        console.error(err);
+      }
+    });
+
+    // Microsoft login
+    microsoftBtn.addEventListener("click", async () => {
+      const provider = new firebase.auth.OAuthProvider("microsoft.com");
+      try {
+        const result = await auth.signInWithPopup(provider);
+        alert("Welcome " + result.user.displayName);
+      } catch (err) {
+        console.error(err);
+      }
+    });
+
+    // Apple login
+    appleBtn.addEventListener("click", async () => {
+      const provider = new firebase.auth.OAuthProvider("apple.com");
+      try {
+        const result = await auth.signInWithPopup(provider);
+        alert("Welcome " + result.user.displayName);
+      } catch (err) {
+        console.error(err);
+      }
+    });
+
+    // Phone login
+    phoneBtn.addEventListener("click", async () => {
+      const phoneNumber = prompt("Enter phone number (+91...)");
+      const appVerifier = new firebase.auth.RecaptchaVerifier("recaptcha-container");
+      try {
+        const confirmationResult = await auth.signInWithPhoneNumber(phoneNumber, appVerifier);
+        const code = prompt("Enter the OTP");
+        const result = await confirmationResult.confirm(code);
+        alert("Signed in: " + result.user.phoneNumber);
+      } catch (err) {
+        console.error(err);
+      }
+    });
+
+    // Auth state changes
+    auth.onAuthStateChanged(user => {
+      statusLine.textContent = user ? `Signed in as ${user.email || user.phoneNumber}` : "Not signed in";
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
