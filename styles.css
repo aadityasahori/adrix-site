@@ -1262,6 +1262,15 @@ footer {
   color: #00bcd4;
 }
 
+.results-box {
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 1.1em;
+}
+
+
 
 
 
