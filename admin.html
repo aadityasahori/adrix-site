@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAITHAK CAFE - Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="admin-page">
+    <div class="sidebar">
+        <div class="cafe-logo-admin">
+            <h2><i class="fas fa-coffee"></i> BAITHAK CAFE</h2>
+        </div>
+        <nav>
+            <a href="#dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="#reviews"><i class="fas fa-star"></i> Reviews</a>
+            <a href="#analytics"><i class="fas fa-chart-bar"></i> Analytics</a>
+            <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="admin-header">
+            <h1>Admin Dashboard</h1>
+            <div class="admin-login" id="loginSection">
+                <input type="password" id="adminPassword" placeholder="Enter admin password">
+                <button onclick="loginAdmin()">Login</button>
+            </div>
+        </div>
+
+        <div id="adminContent" style="display: none;">
+            <!-- Dashboard Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Reviews</h3>
+                    <span id="totalReviews">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Average Rating</h3>
+                    <span id="avgRating">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Today's Reviews</h3>
+                    <span id="todayReviews">0</span>
+                </div>
+            </div>
+
+            <!-- Reviews Table -->
+            <div class="table-container">
+                <h2>All Reviews</h2>
+                <div class="table-responsive">
+                    <table id="reviewsTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Rating</th>
+                                <th>Review</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reviewsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
