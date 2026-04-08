@@ -3,53 +3,471 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAITHAK CAFE - Leave Your Review</title>
-    <link rel="stylesheet" href="style.css">
+    <title>ASAD KIRANA STORE - Your Local Grocery Store</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .cart-icon {
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.2);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: -300px;
+            top: 80px;
+            width: 300px;
+            height: calc(100vh - 80px);
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            transition: left 0.3s ease;
+            z-index: 999;
+            padding: 2rem 0;
+            box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            font-size: 1.2rem;
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-item {
+            padding: 1rem 2rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .category-item:hover,
+        .category-item.active {
+            background: rgba(255,255,255,0.2);
+            border-left-color: #ff6b6b;
+            transform: translateX(10px);
+        }
+
+        /* Main Container */
+        .container {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 400px;
+            position: relative;
+            margin-bottom: 3rem;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            color: white;
+            background: rgba(0,0,0,0.6);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .product-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            transform: scale(1.05);
+        }
+
+        /* Category Filter */
+        .category-filter {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            background: none;
+            border: 2px solid #4ecdc4;
+            color: #4ecdc4;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: #4ecdc4;
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .sidebar {
+                left: -100%;
+                width: 100%;
+            }
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
 </head>
-<body class="review-page">
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">
+                <i class="fas fa-store"></i> ASAD KIRANA STORE
+            </a>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar Toggle -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <ul class="category-list">
+            <li class="category-item active" data-category="all">All Products</li>
+            <li class="category-item" data-category="rice">Rice & Grains</li>
+            <li class="category-item" data-category="oil">Cooking Oil</li>
+            <li class="category-item" data-category="spices">Spices</li>
+            <li class="category-item" data-category="dairy">Dairy Products</li>
+            <li class="category-item" data-category="snacks">Snacks</li>
+            <li class="category-item" data-category="beverages">Beverages</li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
     <div class="container">
-        <div class="cafe-header">
-            <img src="https://via.placeholder.com/150x150/8B4513/FFFFFF?text=BAITHAK" alt="Baithak Cafe" class="cafe-logo">
-            <h1>BAITHAK CAFE</h1>
-            <p>Your feedback matters to us! ☕</p>
-        </div>
-
-        <form id="reviewForm" class="review-form">
-            <div class="rating-section">
-                <label>Rate your experience:</label>
-                <div class="stars" data-rating="0">
-                    <i class="star" data-value="1">★</i>
-                    <i class="star" data-value="2">★</i>
-                    <i class="star" data-value="3">★</i>
-                    <i class="star" data-value="4">★</i>
-                    <i class="star" data-value="5">★</i>
+        <!-- Hero Slider -->
+        <section class="hero">
+            <div class="hero-slide active">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Fresh Groceries">
+                <div class="hero-content">
+                    <h2>Welcome to ASAD KIRANA STORE</h2>
+                    <p>Your trusted local grocery store</p>
                 </div>
-                <span class="rating-text">Click to rate</span>
             </div>
-
-            <div class="form-group">
-                <label for="name">Your Name:</label>
-                <input type="text" id="name" name="name" required>
+            <div class="hero-slide">
+                <img src="https://images.unsplash.com/photo-1571877226796-e9b9764f20db?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Fresh Vegetables">
+                <div class="hero-content">
+                    <h2>Fresh & Quality Products</h2>
+                    <p>Daily essentials at your doorstep</p>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="experience">Share your experience:</label>
-                <textarea id="experience" name="experience" rows="5" required placeholder="Tell us about your visit..."></textarea>
+            <div class="hero-slide">
+                <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3133?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Spices">
+                <div class="hero-content">
+                    <h2>Best Prices Guaranteed</h2>
+                    <p>Shop smart, save big!</p>
+                </div>
             </div>
+        </section>
 
-            <button type="submit" class="submit-btn">
-                <i class="fas fa-paper-plane"></i> Submit Review
-            </button>
-        </form>
-
-        <div id="successMessage" class="success-message" style="display: none;">
-            <i class="fas fa-check-circle"></i>
-            <h3>Thank you for your review!</h3>
-            <p>Your feedback has been submitted successfully.</p>
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="rice">Rice</button>
+            <button class="filter-btn" data-category="oil">Oil</button>
+            <button class="filter-btn" data-category="spices">Spices</button>
+            <button class="filter-btn" data-category="dairy">Dairy</button>
+            <button class="filter-btn" data-category="snacks">Snacks</button>
+            <button class="filter-btn" data-category="beverages">Beverages</button>
         </div>
+
+        <!-- Products Grid -->
+        <section class="products-grid" id="products-grid">
+            <!-- Products will be loaded here by JavaScript -->
+        </section>
     </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <script>
+        // Product Data
+        const products = [
+            { id: 1, name: "Basmati Rice 5kg", price: 450, category: "rice", image: "https://images.unsplash.com/photo-1668487624585-50c22365766e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+            { id: 2, name: "Sunflower Oil 1L", price: 120, category: "oil", image: "https://images.unsplash.com/photo-1612368162353-10b6fb4aa842?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+            { id: 3, name: "Red Chilli Powder", price: 85, category: "spices", image: "https://images.unsplash.com/photo-1582359646-6b6b6b6b6b6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+            { id: 4, name: "Amul Butter 500g", price: 220, category: "dairy", image: "https://images.unsplash.com/photo-1590748730883-9b435986b4f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+            { id: 5, name: "Lays Potato Chips", price: 25, category: "snacks", image: "https://images.unsplash.com/photo-1632534649812-3930530814ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+            { id: 6, name: "Thums Up 2L", price: 65, category: "beverages", image: "https://images.unsplash.com/photo-1570784332178-f6a8c6d8f7e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+            { id: 7, name: "Sona Masoori Rice", price: 380, category: "rice", image: "https://images.unsplash.com/photo-1668487624585-50c22365766e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+            { id: 8, name: "Mustard Oil 1L", price: 140, category: "oil", image: "https://images.unsplash.com/photo-1612368162353-10b6fb4aa842?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+            { id: 9, name: "Turmeric Powder", price: 70, category: "spices", image: "https://images.unsplash.com/photo-1582359646-6b6b6b6b6b6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+            { id: 10, name: "Amul Milk 1L", price: 55, category: "dairy", image: "https://images.unsplash.com/photo-1576089423386-577ded4a6b2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+            { id: 11, name: "Parle-G Biscuits", price: 30, category: "snacks", image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+            { id: 12, name: "Pepsi 2L", price: 70, category: "beverages", image: "https://images.unsplash.com/photo-1570784332178-f6a8c6d8f7e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" }
+        ];
+
+        let cart = [];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts('all');
+            startHeroSlider();
+            animateProducts();
+        });
+
+        // Hero Slider
+        function startHeroSlider() {
+            const slides = document.querySelectorAll('.hero-slide');
+            let currentSlide = 0;
+
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 4000);
+        }
+
+        // Render Products
+        function renderProducts(category) {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            const filteredProducts = category === 'all' 
+                ? products 
+                : products.filter(p => p.category === category);
+
+            filteredProducts.forEach((product, index) => {
+                const productCard = createProductCard(product, index);
+                grid.appendChild(productCard);
+            });
+
+            updateFilterButtons(category);
+            updateSidebarCategories(category);
+        }
+
+        // Create Product Card
+        function createProductCard(product, delay) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.style.animationDelay = `${delay * 0.1}s`;
+            
+            card.innerHTML = `
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">${product.name}</h3>
+                    <div class="product-price">₹${product.price}</div>
+                    <button class="add-to-cart" onclick="addToCart(${product.id})">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                </div>
+            `;
+            return card;
+        }
+
+        // Filter Functions
+        function updateFilterButtons(activeCategory) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.category === activeCategory);
+            });
+        }
+
+        function updateSidebarCategories(activeCategory) {
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.classList.toggle('active', item.dataset.category === activeCategory);
+            });
+        }
+
+        // Sidebar Toggle
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('active');
+            document.getElementById('overlay').classList.remove('
