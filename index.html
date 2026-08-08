@@ -1,473 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASAD KIRANA STORE - Your Local Grocery Store</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            text-decoration: none;
-            color: white;
-        }
-
-        .cart-icon {
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .cart-icon:hover {
-            transform: scale(1.2);
-        }
-
-        /* Sidebar */
-        .sidebar {
-            position: fixed;
-            left: -300px;
-            top: 80px;
-            width: 300px;
-            height: calc(100vh - 80px);
-            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
-            transition: left 0.3s ease;
-            z-index: 999;
-            padding: 2rem 0;
-            box-shadow: 2px 0 15px rgba(0,0,0,0.1);
-        }
-
-        .sidebar.active {
-            left: 0;
-        }
-
-        .sidebar-toggle {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            z-index: 1001;
-            font-size: 1.2rem;
-        }
-
-        .category-list {
-            list-style: none;
-        }
-
-        .category-item {
-            padding: 1rem 2rem;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-left: 4px solid transparent;
-        }
-
-        .category-item:hover,
-        .category-item.active {
-            background: rgba(255,255,255,0.2);
-            border-left-color: #ff6b6b;
-            transform: translateX(10px);
-        }
-
-        /* Main Container */
-        .container {
-            margin-top: 80px;
-            padding: 2rem;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            transition: margin-left 0.3s ease;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 400px;
-            position: relative;
-            margin-bottom: 3rem;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .hero-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .hero-slide.active {
-            opacity: 1;
-        }
-
-        .hero-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-content {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
-            color: white;
-            background: rgba(0,0,0,0.6);
-            padding: 1.5rem;
-            border-radius: 10px;
-        }
-
-        /* Products Grid */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        .product-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-
-        .product-image {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover .product-image img {
-            transform: scale(1.1);
-        }
-
-        .product-info {
-            padding: 1.5rem;
-        }
-
-        .product-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-
-        .product-price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ff6b6b;
-            margin-bottom: 1rem;
-        }
-
-        .add-to-cart {
-            width: 100%;
-            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .add-to-cart:hover {
-            transform: scale(1.05);
-        }
-
-        /* Category Filter */
-        .category-filter {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .filter-btn {
-            background: none;
-            border: 2px solid #4ecdc4;
-            color: #4ecdc4;
-            padding: 10px 20px;
-            margin: 0 5px;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn.active {
-            background: #4ecdc4;
-            color: white;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header-content {
-                padding: 0 1rem;
-            }
-            
-            .container {
-                padding: 1rem;
-            }
-            
-            .sidebar {
-                left: -100%;
-                width: 100%;
-            }
-        }
-
-        /* Overlay */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 998;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coderra — Custom Software, Apps & Websites</title>
+<meta name="description" content="Coderra builds custom software, mobile & web apps, and websites for startups and growing businesses. Fixed pricing, fast delivery, real support.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-content">
-            <a href="#" class="logo">
-                <i class="fas fa-store"></i> ASAD KIRANA STORE
-            </a>
-            <div class="cart-icon" onclick="toggleCart()">
-                <i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span>
-            </div>
-        </div>
-    </header>
 
-    <!-- Sidebar Toggle -->
-    <button class="sidebar-toggle" onclick="toggleSidebar()">
-        <i class="fas fa-bars"></i>
-    </button>
+<!-- ================= NAV ================= -->
+<nav class="nav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-mark"></span>Coderra</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="contact.html" class="btn btn--ghost btn--sm">Get a Quote</a>
+      <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
 
-    <!-- Overlay -->
-    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
-
-    <!-- Sidebar -->
-    <nav class="sidebar" id="sidebar">
-        <ul class="category-list">
-            <li class="category-item active" data-category="all">All Products</li>
-            <li class="category-item" data-category="rice">Rice & Grains</li>
-            <li class="category-item" data-category="oil">Cooking Oil</li>
-            <li class="category-item" data-category="spices">Spices</li>
-            <li class="category-item" data-category="dairy">Dairy Products</li>
-            <li class="category-item" data-category="snacks">Snacks</li>
-            <li class="category-item" data-category="beverages">Beverages</li>
-        </ul>
-    </nav>
-
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Hero Slider -->
-        <section class="hero">
-            <div class="hero-slide active">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Fresh Groceries">
-                <div class="hero-content">
-                    <h2>Welcome to ASAD KIRANA STORE</h2>
-                    <p>Your trusted local grocery store</p>
-                </div>
-            </div>
-            <div class="hero-slide">
-                <img src="https://images.unsplash.com/photo-1571877226796-e9b9764f20db?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Fresh Vegetables">
-                <div class="hero-content">
-                    <h2>Fresh & Quality Products</h2>
-                    <p>Daily essentials at your doorstep</p>
-                </div>
-            </div>
-            <div class="hero-slide">
-                <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3133?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Spices">
-                <div class="hero-content">
-                    <h2>Best Prices Guaranteed</h2>
-                    <p>Shop smart, save big!</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Category Filter -->
-        <div class="category-filter">
-            <button class="filter-btn active" data-category="all">All</button>
-            <button class="filter-btn" data-category="rice">Rice</button>
-            <button class="filter-btn" data-category="oil">Oil</button>
-            <button class="filter-btn" data-category="spices">Spices</button>
-            <button class="filter-btn" data-category="dairy">Dairy</button>
-            <button class="filter-btn" data-category="snacks">Snacks</button>
-            <button class="filter-btn" data-category="beverages">Beverages</button>
-        </div>
-
-        <!-- Products Grid -->
-        <section class="products-grid" id="products-grid">
-            <!-- Products will be loaded here by JavaScript -->
-        </section>
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="container">
+    <div>
+      <div class="eyebrow">Software · Apps · Websites</div>
+      <h1>We build the products your <span class="accent">startup</span> ships.</h1>
+      <p class="lead">Coderra designs and builds custom software, mobile &amp; web apps, and websites — with fixed pricing, clear timelines, and a team that answers when you call.</p>
+      <div class="hero-actions">
+        <a href="products.html" class="btn btn--primary">Explore Products</a>
+        <a href="contact.html" class="btn btn--ghost">Book a Call</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>120+</strong><span>Projects delivered</span></div>
+        <div><strong>4.9/5</strong><span>Average client rating</span></div>
+        <div><strong>6 wks</strong><span>Avg. time to launch</span></div>
+      </div>
     </div>
 
-    <script>
-        // Product Data
-        const products = [
-            { id: 1, name: "Basmati Rice 5kg", price: 450, category: "rice", image: "https://images.unsplash.com/photo-1668487624585-50c22365766e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
-            { id: 2, name: "Sunflower Oil 1L", price: 120, category: "oil", image: "https://images.unsplash.com/photo-1612368162353-10b6fb4aa842?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
-            { id: 3, name: "Red Chilli Powder", price: 85, category: "spices", image: "https://images.unsplash.com/photo-1582359646-6b6b6b6b6b6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
-            { id: 4, name: "Amul Butter 500g", price: 220, category: "dairy", image: "https://images.unsplash.com/photo-1590748730883-9b435986b4f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
-            { id: 5, name: "Lays Potato Chips", price: 25, category: "snacks", image: "https://images.unsplash.com/photo-1632534649812-3930530814ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
-            { id: 6, name: "Thums Up 2L", price: 65, category: "beverages", image: "https://images.unsplash.com/photo-1570784332178-f6a8c6d8f7e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
-            { id: 7, name: "Sona Masoori Rice", price: 380, category: "rice", image: "https://images.unsplash.com/photo-1668487624585-50c22365766e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
-            { id: 8, name: "Mustard Oil 1L", price: 140, category: "oil", image: "https://images.unsplash.com/photo-1612368162353-10b6fb4aa842?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
-            { id: 9, name: "Turmeric Powder", price: 70, category: "spices", image: "https://images.unsplash.com/photo-1582359646-6b6b6b6b6b6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
-            { id: 10, name: "Amul Milk 1L", price: 55, category: "dairy", image: "https://images.unsplash.com/photo-1576089423386-577ded4a6b2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
-            { id: 11, name: "Parle-G Biscuits", price: 30, category: "snacks", image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
-            { id: 12, name: "Pepsi 2L", price: 70, category: "beverages", image: "https://images.unsplash.com/photo-1570784332178-f6a8c6d8f7e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" }
-        ];
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span>
+        <span class="terminal-title">coderra — build console</span>
+      </div>
+      <div class="terminal-body" data-terminal></div>
+    </div>
+  </div>
+</header>
 
-        let cart = [];
+<!-- ================= MARQUEE ================= -->
+<div class="marquee-wrap">
+  <div class="marquee-label">Built for teams in</div>
+  <div class="marquee">
+    <span>Fintech</span><span>Healthcare</span><span>Retail &amp; E-commerce</span><span>Logistics</span><span>Education</span><span>Real Estate</span><span>SaaS</span>
+    <span>Fintech</span><span>Healthcare</span><span>Retail &amp; E-commerce</span><span>Logistics</span><span>Education</span><span>Real Estate</span><span>SaaS</span>
+  </div>
+</div>
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            renderProducts('all');
-            startHeroSlider();
-            animateProducts();
-        });
+<!-- ================= SERVICES ================= -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">What we build</div>
+      <h2>Three ways to bring your idea to market.</h2>
+      <p>Pick a lane, or combine all three — every engagement is scoped, priced, and delivered on a fixed timeline.</p>
+    </div>
+    <div class="grid-3 reveal-stagger">
+      <div class="card reveal" style="--i:0">
+        <div class="card-icon">SW</div>
+        <span class="tag">SOFTWARE</span>
+        <h3 style="margin-top:14px;">Custom Software</h3>
+        <p>Internal tools, dashboards, automation and systems built around how your team actually works.</p>
+        <a href="products.html#software" class="card-link">View software <span class="arrow">→</span></a>
+      </div>
+      <div class="card reveal" style="--i:1">
+        <div class="card-icon">AP</div>
+        <span class="tag">APP</span>
+        <h3 style="margin-top:14px;">Mobile &amp; Web Apps</h3>
+        <p>iOS, Android, and cross-platform apps — from MVP to a full product roadmap.</p>
+        <a href="products.html#apps" class="card-link">View apps <span class="arrow">→</span></a>
+      </div>
+      <div class="card reveal" style="--i:2">
+        <div class="card-icon">WB</div>
+        <span class="tag">WEBSITE</span>
+        <h3 style="margin-top:14px;">Websites &amp; Landing Pages</h3>
+        <p>Marketing sites, e-commerce storefronts, and product landing pages that convert.</p>
+        <a href="products.html#websites" class="card-link">View websites <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Hero Slider
-        function startHeroSlider() {
-            const slides = document.querySelectorAll('.hero-slide');
-            let currentSlide = 0;
+<!-- ================= PROCESS ================= -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">How it works</div>
+      <h2>From first call to launch day.</h2>
+      <p>A straightforward process, so you always know what's next.</p>
+    </div>
+    <div class="process-list">
+      <div class="process-item reveal">
+        <span class="process-num">01</span>
+        <div><h3>Discover</h3><p>We map your goals, users, and constraints in a scoping call — no charge, no obligation.</p></div>
+      </div>
+      <div class="process-item reveal">
+        <span class="process-num">02</span>
+        <div><h3>Design</h3><p>Wireframes and a visual system you approve before a single line of code is written.</p></div>
+      </div>
+      <div class="process-item reveal">
+        <span class="process-num">03</span>
+        <div><h3>Build</h3><p>Weekly demos as we build in the open, on a fixed budget and timeline.</p></div>
+      </div>
+      <div class="process-item reveal">
+        <span class="process-num">04</span>
+        <div><h3>Launch &amp; Support</h3><p>We ship, monitor, and stay on for support, updates, and the next iteration.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            setInterval(() => {
-                slides[currentSlide].classList.remove('active');
-                currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.add('active');
-            }, 4000);
-        }
+<!-- ================= FEATURED PRODUCTS ================= -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Featured</div>
+      <h2>Ready-to-launch products.</h2>
+      <p>Prefer something off the shelf? These ship in days, not months.</p>
+    </div>
+    <div class="grid-3 reveal-stagger">
+      <div class="product-card reveal" style="--i:0">
+        <div class="product-thumb">◆ Inventory OS preview</div>
+        <div class="product-body">
+          <span class="tag">SOFTWARE</span>
+          <h3>Inventory OS</h3>
+          <p>Stock, orders, and supplier management in one clean dashboard.</p>
+          <div class="product-foot">
+            <span class="price">$1,900 <span>one-time</span></span>
+            <a href="products.html" class="btn btn--ghost btn--sm">View</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card reveal" style="--i:1">
+        <div class="product-thumb">◆ Fitly app preview</div>
+        <div class="product-body">
+          <span class="tag">APP</span>
+          <h3>Fitly — Booking App</h3>
+          <p>iOS &amp; Android app for studios to manage classes, payments, and members.</p>
+          <div class="product-foot">
+            <span class="price">$2,600 <span>one-time</span></span>
+            <a href="products.html" class="btn btn--ghost btn--sm">View</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card reveal" style="--i:2">
+        <div class="product-thumb">◆ Storefront preview</div>
+        <div class="product-body">
+          <span class="tag">WEBSITE</span>
+          <h3>Storefront Starter</h3>
+          <p>A fast, conversion-ready e-commerce site with checkout built in.</p>
+          <div class="product-foot">
+            <span class="price">$850 <span>one-time</span></span>
+            <a href="products.html" class="btn btn--ghost btn--sm">View</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Render Products
-        function renderProducts(category) {
-            const grid = document.getElementById('products-grid');
-            grid.innerHTML = '';
+<!-- ================= WHY US ================= -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Why Coderra</div>
+      <h2>Built like a product team, not an agency.</h2>
+    </div>
+    <div class="grid-4 reveal-stagger">
+      <div class="card reveal" style="--i:0">
+        <div class="card-icon">01</div>
+        <h3>Fixed pricing</h3>
+        <p>You get a number up front. No surprise invoices at week six.</p>
+      </div>
+      <div class="card reveal" style="--i:1">
+        <div class="card-icon">02</div>
+        <h3>Clean, owned code</h3>
+        <p>You own every line, every repo, every asset — no lock-in.</p>
+      </div>
+      <div class="card reveal" style="--i:2">
+        <div class="card-icon">03</div>
+        <h3>Fast delivery</h3>
+        <p>Most projects ship in 4–8 weeks, with weekly checkpoints.</p>
+      </div>
+      <div class="card reveal" style="--i:3">
+        <div class="card-icon">04</div>
+        <h3>Real support</h3>
+        <p>Post-launch support included, with plans for ongoing care.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-            const filteredProducts = category === 'all' 
-                ? products 
-                : products.filter(p => p.category === category);
+<!-- ================= TESTIMONIALS ================= -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+      <div class="eyebrow" style="justify-content:center;">Client feedback</div>
+      <h2>Teams that shipped with us.</h2>
+    </div>
+    <div class="grid-3 reveal-stagger">
+      <div class="testi-card reveal" style="--i:0">
+        <p class="quote">"Coderra took a messy spreadsheet workflow and turned it into a tool our whole ops team actually enjoys using."</p>
+        <div class="testi-who"><span class="testi-avatar"></span><div><strong>Priya Nair</strong><span>Head of Ops, Retail startup</span></div></div>
+      </div>
+      <div class="testi-card reveal" style="--i:1">
+        <p class="quote">"We had a working app in six weeks. Fixed price, no scope creep, exactly what was promised."</p>
+        <div class="testi-who"><span class="testi-avatar"></span><div><strong>Daniel Osei</strong><span>Founder, Fitness app</span></div></div>
+      </div>
+      <div class="testi-card reveal" style="--i:2">
+        <p class="quote">"Our new site converts almost twice as well as the old one. Clean build, no bloat."</p>
+        <div class="testi-who"><span class="testi-avatar"></span><div><strong>Maria Alvarez</strong><span>Marketing Lead, D2C brand</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            filteredProducts.forEach((product, index) => {
-                const productCard = createProductCard(product, index);
-                grid.appendChild(productCard);
-            });
+<!-- ================= CTA ================= -->
+<section class="section" style="border-bottom:none;">
+  <div class="container">
+    <div class="cta-band reveal">
+      <h2>Have a product in mind?</h2>
+      <p>Tell us what you're building — we'll reply with a scope and a price within one business day.</p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn btn--primary">Start a Project</a>
+        <a href="pricing.html" class="btn btn--ghost">See Pricing</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-            updateFilterButtons(category);
-            updateSidebarCategories(category);
-        }
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="brand"><span class="brand-mark"></span>Coderra</a>
+        <p>A small studio building custom software, apps, and websites for startups that need to move fast.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="products.html#software">Custom Software</a></li>
+          <li><a href="products.html#apps">Mobile &amp; Web Apps</a></li>
+          <li><a href="products.html#websites">Websites</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@coderra.com">hello@coderra.com</a></li>
+          <li><a href="tel:+10000000000">+1 (000) 000-0000</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Coderra. All rights reserved.</span>
+      <div class="social-row">
+        <a href="#">Twitter</a><a href="#">LinkedIn</a><a href="#">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-        // Create Product Card
-        function createProductCard(product, delay) {
-            const card = document.createElement('div');
-            card.className = 'product-card';
-            card.style.animationDelay = `${delay * 0.1}s`;
-            
-            card.innerHTML = `
-                <div class="product-image">
-                    <img src="${product.image}" alt="${product.name}" loading="lazy">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">${product.name}</h3>
-                    <div class="product-price">₹${product.price}</div>
-                    <button class="add-to-cart" onclick="addToCart(${product.id})">
-                        <i class="fas fa-cart-plus"></i> Add to Cart
-                    </button>
-                </div>
-            `;
-            return card;
-        }
-
-        // Filter Functions
-        function updateFilterButtons(activeCategory) {
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.category === activeCategory);
-            });
-        }
-
-        function updateSidebarCategories(activeCategory) {
-            document.querySelectorAll('.category-item').forEach(item => {
-                item.classList.toggle('active', item.dataset.category === activeCategory);
-            });
-        }
-
-        // Sidebar Toggle
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('overlay').classList.toggle('active');
-        }
-
-        function closeSidebar() {
-            document.getElementById('sidebar').classList.remove('active');
-            document.getElementById('overlay').classList.remove('
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="js/main.js"></script>
+</body>
+</html>
