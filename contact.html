@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Coderra</title>
+<meta name="description" content="Get a free quote from Coderra for your software, app, or website project.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-mark"></span>Coderra</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="contact.html" class="btn btn--ghost btn--sm">Get a Quote</a>
+      <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container">
+    <div class="eyebrow">Contact</div>
+    <h1>Tell us what you're building.</h1>
+    <p>Fill in the form and we'll come back with a scope and a fixed price — usually within one business day.</p>
+  </div>
+</header>
+
+<section class="section" style="padding-top:0;border-bottom:none;">
+  <div class="container">
+    <div class="grid-2" style="align-items:flex-start;gap:48px;">
+
+      <div class="card reveal">
+        <form id="contact-form">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Doe" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="company">Company (optional)</label>
+              <input type="text" id="company" name="company" placeholder="Acme Inc.">
+            </div>
+            <div class="form-field">
+              <label for="interest">I'm interested in</label>
+              <select id="interest" name="interest">
+                <option>Custom Software</option>
+                <option>Mobile / Web App</option>
+                <option>Website</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field full">
+            <label for="budget">Estimated budget</label>
+            <select id="budget" name="budget">
+              <option>Under $1,000</option>
+              <option>$1,000 – $3,000</option>
+              <option>$3,000 – $10,000</option>
+              <option>$10,000+</option>
+            </select>
+          </div>
+          <div class="form-field full">
+            <label for="message">Project details</label>
+            <textarea id="message" name="message" placeholder="What are you trying to build, and by when?" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">Send Message</button>
+          <p class="form-status"></p>
+          <p class="form-note">This form is front-end only. Connect it to Formspree, Netlify Forms, or your own backend to receive real submissions — see the note in js/main.js.</p>
+        </form>
+      </div>
+
+      <div class="reveal" style="--i:1">
+        <div class="contact-info-card">
+          <h4>Email</h4>
+          <a href="mailto:hello@coderra.com">hello@coderra.com</a>
+        </div>
+        <div class="contact-info-card">
+          <h4>Phone</h4>
+          <a href="tel:+10000000000">+1 (000) 000-0000</a>
+        </div>
+        <div class="contact-info-card">
+          <h4>Office hours</h4>
+          <p>Mon – Fri, 9:00 – 18:00 (GMT+5:30)</p>
+        </div>
+        <div class="contact-info-card">
+          <h4>Response time</h4>
+          <p>We reply to every enquiry within one business day.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="brand"><span class="brand-mark"></span>Coderra</a>
+        <p>A small studio building custom software, apps, and websites for startups that need to move fast.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="products.html">Custom Software</a></li>
+          <li><a href="products.html">Mobile &amp; Web Apps</a></li>
+          <li><a href="products.html">Websites</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@coderra.com">hello@coderra.com</a></li>
+          <li><a href="tel:+10000000000">+1 (000) 000-0000</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Coderra. All rights reserved.</span>
+      <div class="social-row"><a href="#">Twitter</a><a href="#">LinkedIn</a><a href="#">GitHub</a></div>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="js/main.js"></script>
+</body>
+</html>
